@@ -6,9 +6,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class) /* Spring @Autowired などの機能を動かすことができる(インジェクションされたBeanなども実行できる) */
 @SpringApplicationConfiguration(classes = MrsApplication.class)
-@WebAppConfiguration
+@WebAppConfiguration /* WebApplicationContextを利用することができ、Webアプリとしてのテストができる */
 public class MrsApplicationTests {
 
 	@Test
