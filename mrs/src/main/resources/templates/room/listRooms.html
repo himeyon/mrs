@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+
+<script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}" type="text/javascript" ></script>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
 <title th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</title>
 </head>
 <body>
@@ -9,12 +15,26 @@
 	<a th:href="@{'/rooms/' + ${date.minusDays(1)}}">&lt; 前日</a>
 	<span th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</span>
 	<a th:href="@{'/rooms/' + ${date.plusDays(1)}}">翌日 &gt;</a>
-	<ul>
-		<li th:each="room: ${rooms}">
-			<a th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
-			   th:text="${room.meetingRoom.roomName}"></a>
-		</li>
-	</ul>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>room:</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="room : ${rooms}">
+						<td><a
+							th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
+							th:text="${room.meetingRoom.roomName}"> </a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 	<form th:action="@{/logout}" method="post">
 		<button>ログアウト</button>
 	</form>
