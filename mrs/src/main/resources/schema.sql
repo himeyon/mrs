@@ -1,3 +1,5 @@
+/*
+
 DROP TABLE IF EXISTS meeting_room CASCADE /;
 DROP TABLE IF EXISTS reservable_room CASCADE /;
 DROP TABLE IF EXISTS reservation CASCADE /;
@@ -36,3 +38,5 @@ ALTER TABLE reservation DROP CONSTRAINT IF EXISTS FK_recqnfjcp370rygd9hjjxjtg/;
 ALTER TABLE reservable_room ADD CONSTRAINT FK_f4wnx2qj0d59s9tl1q5800fw7 FOREIGN KEY (room_id) REFERENCES meeting_room/;
 ALTER TABLE reservation ADD CONSTRAINT FK_p1k4iriqd4eo1cpnv79uvni9g FOREIGN KEY (reserved_date, room_id) REFERENCES reservable_room/;
 ALTER TABLE reservation ADD CONSTRAINT FK_recqnfjcp370rygd9hjjxjtg FOREIGN KEY (user_id) REFERENCES usr/;
+
+*/
