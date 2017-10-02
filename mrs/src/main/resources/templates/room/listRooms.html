@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
-
-<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" type="text/javascript" ></script>
-<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-
 <title th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</title>
 </head>
 <body>
-	<h3>会議室</h3>
-	<a th:href="@{'/rooms/' + ${date.minusDays(1)}}">&lt; 前日</a>
-	<span th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</span>
-	<a th:href="@{'/rooms/' + ${date.plusDays(1)}}">翌日 &gt;</a>
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>room:</th>
-						<th>&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="room : ${rooms}">
-						<td><a
-							th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
-							th:text="${room.meetingRoom.roomName}"> </a></td>
-					</tr>
-				</tbody>
-			</table>
+	<div layout:fragment="content" data-replace="">
+		<div class="form-group">
+			<div class="card">
+				<div class="card-block">
+					<h5 class="card-header" th:text="会議室一覧"></h5>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<a th:href="@{'/rooms/' + ${date.minusDays(1)}}">&lt; 前日</a> <span
+				th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</span>
+			<a th:href="@{'/rooms/' + ${date.plusDays(1)}}">翌日 &gt;</a>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>room:</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="room : ${rooms}">
+								<td><a
+									th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
+									th:text="${room.meetingRoom.roomName}"> </a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<form th:action="@{/logout}" method="post">
-		<button>ログアウト</button>
-	</form>
 </body>
 </html>

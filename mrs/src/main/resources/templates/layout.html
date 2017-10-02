@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>title</title>
+	<meta charset="UTF-8" />
+	<title>Layout Dialect</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+	
+	<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+	<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body class="panel panel-info">
+	<th:block th:fragment="layout_args (title)">
+		<div layout:replace="~{layout/header::header}"></div>
+		<div layout:replace="~{layout/navi::navi}"></div>
+
+		<div layout:fragment="content" data-include=""></div>
+
+		<footer class="panel panel-footer">Copyright(C) himeyon systems Co.,Ltd, All rights reserved.</footer>
+</body>
+</html>
