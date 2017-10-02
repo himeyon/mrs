@@ -7,11 +7,13 @@ It is a sample program for a flame-up project.
 ##### http://www.shoeisha.co.jp/book/detail/9784798142470
 
 ## create user
+
 CREATE ROLE mrs LOGIN
 PASSWORD 'mrs'
 NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
 
 ## create database
+
 CREATE DATABASE mrs
 WITH OWNER = mrs
 ENCODING = 'UTF8'
