@@ -21,7 +21,7 @@ public class HumanTheoriesTest {
 	@DataPoints
 	public static Object[][] VALUES = {
 		{ init("1980/01/11", "mizuki", "katagiri"), 37, "mizuki katagiri" },
-		{ init("1982/06/23", "hideki1", "katagiri"), 35, "hideki katagiri" },
+		{ init("1982/06/23", "hideki", "katagiri"), 35, "hideki katagiri" },
 		{ init("1984/10/10", "hiroki", "katagiri"), 32, "hiroki katagiri" }
 	};
 	
