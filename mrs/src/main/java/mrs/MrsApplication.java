@@ -11,10 +11,9 @@ public class MrsApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(MrsApplication.class, args);
 	}
-	
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MrsApplication.class);
-    }
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(MrsApplication.class);
+	}
 }
