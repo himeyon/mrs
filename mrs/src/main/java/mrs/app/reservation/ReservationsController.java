@@ -132,6 +132,8 @@ public class ReservationsController {
 	
 		Workbook workbook = null;
 		File tmpFile = null;
+		// TODO Move utility class.
+		// TODO Session directory cleaning.
 		try {
 			// create workspace (tmp\session)
 			String root = System.getProperty("java.io.tmpdir") + File.separator + sessionId;
