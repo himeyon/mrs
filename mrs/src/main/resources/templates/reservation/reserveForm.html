@@ -76,6 +76,7 @@
 						<th>時間帯</th>
 						<th>予約者</th>
 						<th>操作</th>
+						<th>帳票</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -92,6 +93,17 @@
 									th:value="${reservation.reservationId}" /> <input
 									type="submit" class="btn btn-secondary" name="cancel"
 									value="取消" />
+							</form>
+						</td>
+						<td>
+							<form th:action="@{'/reservations/' + ${date} + '/' + ${roomId}}"
+								method="get"
+								sec:authorize="${hasRole('ADMIN') or #vars.user.userId == #vars.reservation.user.userId}">
+								<input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
+								<input type="hidden" name="startEndTime" th:value="${reservation.startTime} + ' - ' + ${reservation.endTime}" />
+								<input
+									type="submit" class="btn btn-secondary" name="excel"
+									value="XLSX" />
 							</form>
 						</td>
 					</tr>
