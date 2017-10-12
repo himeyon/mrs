@@ -9,13 +9,6 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.swing.text.AbstractDocument.Content;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +25,6 @@ public class ReservationXlsxService {
 	protected ResourceLoader resourceLoader;
 
 	public Path generateXlsx(final String sessionId, final String startEnd) throws Exception {
-		Workbook workbook = null;
 		File xlsxFile = null;
 		Path xlsxFilePath = null;
 
@@ -59,17 +51,6 @@ public class ReservationXlsxService {
 			context.putVar("reportHeader", header);
 			
 			JxlsHelper.getInstance().processTemplate(resource.getInputStream(), fos, context);
-			
-/*			workbook = WorkbookFactory.create(resource.getInputStream());
-
-			Sheet sheet = workbook.getSheetAt(0);
-			Row row = sheet.createRow(0);
-			Cell cell = row.createCell(0);
-			cell.setCellValue(startEnd);
-
-			// save excel file to temporary file
-			FileOutputStream fos = new FileOutputStream(xlsxFile);
-			workbook.write(fos);*/
 
 		} catch (Throwable e) {
 			e.printStackTrace();
