@@ -33,12 +33,20 @@ public class ReservationXlsxService {
 
 		try {
 			String workRootPath = System.getProperty("java.io.tmpdir") + File.separator + sessionId;
-			// mkdir.
-			(new File(workRootPath)).mkdir();
 
+			// Make working root path.
+			// TODO common(ログインした時にtemp/{sessionID}に作業用のフォルダを作成する).
+			File rootPath = new File(workRootPath);
+			rootPath.mkdir();
+			// Delete at JVM shutdown.
+			rootPath.deleteOnExit();
+
+			// TODO common(ファイル加工用の一時ファイルを生成する処理).
 			// generate temporary file and path.
 			xlsxFilePath = Files.createTempFile(Paths.get(workRootPath), UUID.randomUUID().toString(), "");
 			xlsxFile = xlsxFilePath.toFile();
+			// Delete at JVM shutdown. 
+			xlsxFile.deleteOnExit();
 
 			// create POI object from template file.
 			Resource resource = resourceLoader.getResource("classpath:xlsx/template001.xlsx");
