@@ -26,3 +26,4 @@ nbdist/
 # others
 WebContent/
 bin/
+.checkstyle
