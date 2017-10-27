@@ -1,7 +1,11 @@
 package mrs.app.room;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
+import java.time.LocalDate;
+
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,12 +73,20 @@ public class RoomsControllerTestOk {
     @MockBean
     private RoomService roomService;
 
-    @Test
+    //@Test
     public void test_rooms() throws Exception {
-        
         this.mockMvc.perform(get("/rooms"))
         .andDo(MockMvcResultHandlers.print())
         .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.view().name("room/listRooms"));
+    }
+    
+    @Test
+    public void test_rooms_日付指定() throws Exception {
+        this.mockMvc.perform(get("/rooms/{date}", LocalDate.of(2017,10,20)))
+        .andDo(MockMvcResultHandlers.print())
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("2017/10/20の会議室")))
         .andExpect(MockMvcResultMatchers.view().name("room/listRooms"));
     }
 }
